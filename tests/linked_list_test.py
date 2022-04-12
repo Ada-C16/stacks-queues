@@ -2,7 +2,7 @@ import pytest
 from stacks_queues.linked_list import LinkedList
 
 # This is used by the instructor to verify the LinkedList class works.
-# Students's can ignore this file.
+# Students can ignore this file.
 
 # Fixture to start each test with a new LinkedList
 @pytest.fixture()
