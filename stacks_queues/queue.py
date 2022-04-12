@@ -23,34 +23,43 @@ class Queue:
             In the store are occupied
             returns None
         """
-        pass
+        self.store[self.rear + 1] = element
+        self.rear += 1
+        self.size += 1
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        if self.empty():
+            raise QueueEmptyException("Queue is empty")
+        val = self.store[self.front + 1]
+        self.store[self.front + 1] = None
+        self.front += 1
+        self.size -= 1
+        return val
+        
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
+        return self.store[self.front + 1]
         
 
     def size(self):
         """ Returns the number of elements in
             The Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        return self.size == 0
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +67,10 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        arr = []
+        for i in range(self.size):
+            index = self.front + 1 + i
+            arr.append(str(self.store[index]))
+        
+        return "[" + ", ".join(arr) + "]"
+
