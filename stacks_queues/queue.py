@@ -15,7 +15,6 @@ class Queue:
         self.front = -1
         self.rear = -1
         self.size = 0
-      
 
     def enqueue(self, element):
         """ Adds an element to the Queue
@@ -23,8 +22,15 @@ class Queue:
             In the store are occupied
             returns None
         """
-        self.store[self.rear + 1] = element
-        self.rear += 1
+        if self.size == self.buffer_size:
+            raise QueueFullException("Queue full")
+
+        if self.size == 0:
+            self.front = 0
+            self.rear = 0
+
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
         self.size += 1
 
     def dequeue(self):
@@ -34,9 +40,9 @@ class Queue:
         """
         if self.empty():
             raise QueueEmptyException("Queue is empty")
-        val = self.store[self.front + 1]
-        self.store[self.front + 1] = None
-        self.front += 1
+        val = self.store[self.front]
+        self.store[self.front] = None
+        self.front = (self.front + 1) % self.buffer_size
         self.size -= 1
         return val
         
@@ -46,7 +52,7 @@ class Queue:
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        return self.store[self.front + 1]
+        return self.store[self.front]
         
 
     def size(self):
@@ -69,7 +75,7 @@ class Queue:
         """
         arr = []
         for i in range(self.size):
-            index = self.front + 1 + i
+            index = (self.front + i) % self.buffer_size
             arr.append(str(self.store[index]))
         
         return "[" + ", ".join(arr) + "]"
