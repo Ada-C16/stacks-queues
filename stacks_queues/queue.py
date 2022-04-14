@@ -25,7 +25,10 @@ class Queue:
             In the store are occupied
             returns None
         """
+<<<<<<< HEAD
         pass
+=======
+>>>>>>> 6b798a8 (Complete methods in queue)
         if self.front == -1:
             self.front = 0
             self.rear = 0
@@ -41,21 +44,35 @@ class Queue:
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
+<<<<<<< HEAD
         pass
         if self.size == 0:
             raise QueueEmptyException
+=======
+        if self.size == 0:
+            raise QueueEmptyException('Queue is empty')
+>>>>>>> 6b798a8 (Complete methods in queue)
 
         head = self.front
         element = self.store[head]
 
         for i in range(self.size):
             self.store[i] = self.store[i+1]
+<<<<<<< HEAD
 
         self.rear -= 1
         self.size -= 1
 
         return element
 
+=======
+
+        self.rear -= 1
+        self.size -= 1
+
+        return element
+
+>>>>>>> 6b798a8 (Complete methods in queue)
     def get_front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
