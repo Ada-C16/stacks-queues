@@ -32,8 +32,12 @@ def test_dequeue_can_remove_an_item(queue):
 def test_elements_dequeued_in_fifo_order(queue):
     queue.enqueue(5)
     queue.enqueue(6)
+    queue.enqueue(7)
+    queue.enqueue(8)
     assert queue.dequeue() == 5
     assert queue.dequeue() == 6
+    assert queue.dequeue() == 7
+    assert queue.dequeue() == 8
     assert queue.empty()
 
 def test_elements_maintained_in_proper_order(queue):
@@ -59,3 +63,10 @@ def test_with_large_queue(queue):
 
     with pytest.raises(QueueFullException):
         queue.enqueue('This will break it')
+
+def test_get_front_maintains_size(queue):
+    queue.enqueue(1)
+    queue.enqueue(5)
+    queue.enqueue(10)
+    assert queue.get_front() == 1
+    assert queue.size == 3
