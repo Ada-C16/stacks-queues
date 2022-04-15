@@ -1,4 +1,5 @@
 import pytest
+from stacks_queues.linked_list import EmptyListError
 from stacks_queues.stack import Stack, StackEmptyException
 
 
@@ -41,3 +42,21 @@ def test_items_removed_in_lifo_order(stack):
     assert stack.pop() == 3
     assert stack.pop() == 5
     assert stack.empty()
+
+def test_expected_string_returned(stack):
+    stack.push(5)
+    stack.push(10)
+    stack.push(15)
+
+    assert str(stack) == "[15, 10, 5]"
+
+def test_exception_raised(stack):
+    stack.push(5)
+    stack.push(10)
+    stack.push(15)
+    
+    assert stack.pop() == 15
+    assert stack.pop() == 10
+    assert stack.pop() == 5
+    with pytest.raises(EmptyListError, match='List is empty'):
+        stack.pop()
