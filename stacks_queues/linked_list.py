@@ -31,6 +31,7 @@ class LinkedList:
             self.tail = self.head
 
     def get_first(self):
+        print(f'{self.head= }')
         if not self.head:
             return None
         return self.head.value
@@ -48,7 +49,7 @@ class LinkedList:
 
 
     def empty(self):
-      return not self.head
+        return not self.head
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
