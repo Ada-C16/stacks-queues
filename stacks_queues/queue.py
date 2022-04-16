@@ -38,7 +38,18 @@ class Queue:
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        # check if empty, raise exception
+        if self.size == self.buffer_size:
+            raise QueueFullException('Queue is full!')
+        
+        # find and store front element
+        temp = self.front
+
+        # move front to next index
+        self.front =+ 1
+        
+        # return old front element
+        return temp
 
     def front(self):
         """ Returns an element from the front
