@@ -1,4 +1,7 @@
 
+from multiprocessing.context import ForkContext
+
+
 INITIAL_QUEUE_SIZE = 20
 
 class QueueFullException(Exception):
@@ -41,11 +44,11 @@ class Queue:
             The Queue is empty.
         """
         # check if empty, raise exception
-        if self.size == self.buffer_size:
+        if self.size == 0:
             raise QueueEmptyException('Queue is empty!')
         
         # find and store front element
-        temp = self.front
+        temp = self.store[self.front]
 
         # move front to next index
         self.front = (self.front + 1)
@@ -59,7 +62,10 @@ class Queue:
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        return self.front
+        if self.size == 0:
+            return None
+
+        return self.store[self.front]
         
 
     def size(self):
@@ -80,17 +86,16 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        result = []
+        # check if queue is empty
         if self.size == 0:
-            return result
-        elif self.rear >= self.front:
-            self.queue
-
-        # while self.front != None:
-        #     element = self.dequeue()
-        #     result.append(element)
-        # return str(result)
-
-# queue = Queue()
-# queue.enqueue(10)
-# print(queue)
+            raise QueueEmptyException('Queue is empty!')
+        
+        # when self.rear is greater than self.front
+        elif self.rear > self.front:
+            return str(self.store[self.front:self.rear])
+        
+        # when self.rear is at earlier indexes and less than self.front
+        else:
+            first_half = self.store[self.front:]
+            second_half = self.store[:self.rear]
+        return str(first_half+second_half)
