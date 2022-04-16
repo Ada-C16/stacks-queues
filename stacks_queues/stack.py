@@ -1,3 +1,4 @@
+from logging import raiseExceptions
 from stacks_queues.linked_list import LinkedList
 
 class StackEmptyException(Exception):
@@ -12,7 +13,8 @@ class Stack:
         """ Adds an element to the top of the Stack.
             Returns None
         """
-        pass
+        self.store.add_last(element)
+        return None
 
     def pop(self):
         """ Removes an element from the top
@@ -21,13 +23,18 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        pass
+        if not self.store:
+            raise StackEmptyException
+        return self.store.remove_last()
 
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        pass
+        if self.store.empty():
+            return True
+        else:
+            return False
 
     def __str__(self):
         """ Returns the Stack in String form like:
@@ -35,4 +42,4 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        return str(self.store)
