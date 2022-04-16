@@ -39,7 +39,7 @@ class Queue:
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        if self.size == 0:
+        if self.empty():
             raise QueueEmptyException("Queue is empty!")
     
         front_ele = self.store[self.front]
