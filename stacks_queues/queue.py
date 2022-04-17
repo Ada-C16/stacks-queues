@@ -21,7 +21,9 @@ class Queue:
 
     def is_full(self):
         if self.size == self.buffer_size:
-            raise QueueFullException
+            self.store.insert(self.rear+1, None)
+            self.buffer_size += 1
+            self.front += 1
 
     def enqueue(self, element):
         """ Adds an element to the Queue
