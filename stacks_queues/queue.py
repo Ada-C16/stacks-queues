@@ -61,7 +61,6 @@ class Queue:
         """
         if self.size == 0:
             return None
-
         return self.store[self.front]
         
 
@@ -77,6 +76,7 @@ class Queue:
         """
         if self.size == 0:
             return True
+        return False
 
     def __str__(self):
 
@@ -91,23 +91,14 @@ class Queue:
         my_string = ', '.join(string_list)
         result = '[' + my_string + ']'
         return result
-
-        # new_list = self.store[:]
-        # new_list = list(filter(None, new_list))
-        # #new_list[:None] == new_list[:]
-
-        # # for i in range(len(new_list)):
-        # #     if new_list[i] == None:
-        # #         new_list.pop(i)
         
-        # string_list = ', '.join(new_list)
-        # result = '[' + string_list + ']'
-        # print(result)
-        # return result
-        
-
+        # my_list = []
         # for i in range(self.size):
-        #     my_list.append(self.store[(self.front + i) % self.buffer_size])
-        #     return my_list
+        #     current = (self.front + i) % self.buffer_size
+        #     element = str(self.store[current])
+        #     my_list.append(element)
+        #     result = '[' + ', '.join(my_list) + ']'
+        #     return result
+
 
 
