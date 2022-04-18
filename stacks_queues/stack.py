@@ -33,9 +33,9 @@ class Stack:
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        if self.store.get_first == None:
-            return True
-        return False
+        if self.store.get_first():
+            return False
+        return True
 
     def __str__(self):
         """ Returns the Stack in String form like:

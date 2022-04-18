@@ -25,8 +25,8 @@ class Queue:
             self.rear = 0
         
         self.store[self.rear] = element
-        print(self.store[self.rear])
-        print(self.store)
+        #print(self.store[self.rear])
+        #print(self.store)
         self.rear = (self.rear + 1) % self.buffer_size
         self.size += 1
 
@@ -42,7 +42,7 @@ class Queue:
         #move front to the next index
         #return old front element
 
-        if self.size == 0:
+        if self.empty():
             raise QueueEmptyException('Queue is empty')
 
         temp = self.store[self.front]
@@ -74,9 +74,7 @@ class Queue:
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        if self.size == 0:
-            return True
-        return False
+        return self.size == 0
 
     def __str__(self):
 
@@ -85,20 +83,23 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        int_list = self.store[:]
-        int_list = list(filter(None, int_list))
-        string_list = [str(int) for int in int_list]
-        my_string = ', '.join(string_list)
-        result = '[' + my_string + ']'
-        return result
+        # int_list = self.store[:]
+        # int_list = list(filter(None, int_list))
+        # string_list = [str(int) for int in int_list]
+        # my_string = ', '.join(string_list)
+        # result = '[' + my_string + ']'
+        # return result
         
-        # my_list = []
-        # for i in range(self.size):
-        #     current = (self.front + i) % self.buffer_size
-        #     element = str(self.store[current])
-        #     my_list.append(element)
-        #     result = '[' + ', '.join(my_list) + ']'
-        #     return result
+        #first collect elements of the queue in a list
+        int_list = []
+        for i in range(self.size):
+            #because of the circular buffer the index needs to "revolve":
+            current_i = (self.front + i) % self.buffer_size
+            #convert the int to a string
+            int_list.append(str(self.store[current_i]))
+
+        #return a string resembling a list
+        return '[' + ', '.join(int_list) + ']'
 
 
 
