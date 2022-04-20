@@ -1,7 +1,9 @@
 from stacks_queues.linked_list import LinkedList
 
+
 class StackEmptyException(Exception):
     pass
+
 
 class Stack:
 
@@ -12,7 +14,7 @@ class Stack:
         """ Adds an element to the top of the Stack.
             Returns None
         """
-        pass
+        self.store.add_first(element)
 
     def pop(self):
         """ Removes an element from the top
@@ -21,13 +23,22 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        pass
+        if self.store == None:
+            raise StackEmptyException("Stack is empty")
+        else:
+            element = self.store.get_first()
+            self.store.remove_first()
+
+        return element
 
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        pass
+        if self.store.get_first() == None:
+            return True
+        else:
+            return False
 
     def __str__(self):
         """ Returns the Stack in String form like:
@@ -35,4 +46,4 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        return "[" + str(self.store) + "]"
