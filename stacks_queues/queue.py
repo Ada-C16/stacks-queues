@@ -7,6 +7,8 @@ class QueueFullException(Exception):
 class QueueEmptyException(Exception):
     pass
 
+
+
 class Queue:
 
     def __init__(self):
@@ -23,20 +25,41 @@ class Queue:
             In the store are occupied
             returns None
         """
-        pass
+        if self.size == self.buffer_size:
+            raise QueueFullException('Queue is full!')
+
+        if self.size == 0:
+            self.front = 0
+            self.rear = 0
+
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
+        self.size += 1
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+
+        if self.size == 0:
+            raise QueueEmptyException('Queue is empty!')
+
+        temp = self.store[self.front]
+        self.store[self.front] = None
+        self.front = (self.front + 1) % self.buffer_size
+        self.size -= 1
+
+        return temp
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
+        if self.size == 0:
+            return None
+
         pass
         
 
@@ -44,13 +67,17 @@ class Queue:
         """ Returns the number of elements in
             The Queue
         """
+        return self.size
         pass
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        if self.size == 0:
+            return True
+        else:
+            return False
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +85,8 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+
+        arr = []
+        for i in range(self.size):
+            arr.append(self.store[(self.front + i) % self.buffer_size])
+        return str(arr)
