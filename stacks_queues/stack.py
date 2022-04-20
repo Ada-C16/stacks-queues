@@ -13,7 +13,6 @@ class Stack:
         """ Adds an element to the top of the Stack.
             Returns None
         """
-
         self.store.add_first(element)
 
     def pop(self):
@@ -43,5 +42,5 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        my_string = '[' + self.store.visit() + ']'
+        my_string = '[' + str(self.store) + ']'
         return my_string

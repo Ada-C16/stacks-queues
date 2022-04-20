@@ -25,12 +25,9 @@ class Queue:
             self.rear = 0
         
         self.store[self.rear] = element
-        #print(self.store[self.rear])
-        #print(self.store)
+        #when we enqueue we have to move the rear
         self.rear = (self.rear + 1) % self.buffer_size
         self.size += 1
-
-
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
@@ -47,12 +44,11 @@ class Queue:
 
         temp = self.store[self.front]
         self.store[self.front] = None
+        #when we dequeue we have to move the front
         self.front = (self.front + 1) % self.buffer_size
         self.size -= 1
 
         return temp
-
-
 
     def front(self):
         """ Returns an element from the front
