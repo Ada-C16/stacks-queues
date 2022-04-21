@@ -22,7 +22,7 @@ def test_you_can_add_multiple_items(queue):
     assert str(queue) == "[10, 20, 30]"
 
 def test_the_queue_starts_empty(queue):
-    assert queue.empty
+    assert queue.empty()
 
 def test_dequeue_can_remove_an_item(queue):
     queue.enqueue(5)
