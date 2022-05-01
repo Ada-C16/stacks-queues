@@ -1,4 +1,3 @@
-
 INITIAL_QUEUE_SIZE = 20
 
 class QueueFullException(Exception):
@@ -50,20 +49,26 @@ class Queue:
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
+        if not self.empty():
+            return self.store[self.front]
+        else: 
+            return None
         
 
     def size(self):
         """ Returns the number of elements in
             The Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        if self.size == 0:
+            return True
+        else:
+            return False
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -71,4 +76,4 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        return self.store[:self.size].__str__()
