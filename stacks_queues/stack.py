@@ -22,7 +22,7 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        if self.store.length() == 0:
+        if self.empty():
             raise StackEmptyException("Stack is empty")
             return None
         else:
@@ -32,10 +32,7 @@ class Stack:
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        if self.store.length() == 0:
-            return True
-        else:
-            return False
+        return self.store.length() == 0
 
     def __str__(self):
         """ Returns the Stack in String form like:
