@@ -14,7 +14,7 @@ class Queue:
         self.buffer_size = INITIAL_QUEUE_SIZE
         self.front = -1
         self.rear = -1
-        self.size = self.get_size()
+        self.size = 0
 
     def enqueue(self, element):
         """ Adds an element to the Queue.
@@ -61,13 +61,6 @@ class Queue:
         """ Returns the number of elements in
             the Queue
         """
-        if self.front == -1:
-            return 0
-        elif self.front <= self.rear:
-            self.size = self.rear - self.front
-        else:
-            self.size = (self.buffer_size - self.front) + (self.rear)
-        
         return self.size
 
     def empty(self):
