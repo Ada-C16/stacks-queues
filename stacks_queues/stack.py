@@ -39,4 +39,4 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        return self.store.__str__()
+        return str(self.store)
