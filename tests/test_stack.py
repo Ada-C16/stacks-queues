@@ -41,3 +41,10 @@ def test_items_removed_in_lifo_order(stack):
     assert stack.pop() == 3
     assert stack.pop() == 5
     assert stack.empty()
+
+def test_str_method_prints_stack(stack):
+    stack.push(5)
+    stack.push(3)
+    stack.push(7)
+
+    assert str(stack) == '[7, 3, 5]'
