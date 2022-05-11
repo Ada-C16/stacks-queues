@@ -48,7 +48,7 @@ class LinkedList:
 
 
     def empty(self):
-      return not self.head
+        return not self.head
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
@@ -165,7 +165,7 @@ class LinkedList:
             if self.head:
                 self.head.previous = None
             else:
-                tail = None
+                self.tail = None
             return None
 
         previous = current
