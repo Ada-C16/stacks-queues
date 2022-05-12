@@ -18,44 +18,49 @@ class Queue:
       
 
     def enqueue(self, element):
-        """ Adds an element to the Queue
-            Raises a QueueFullException if all elements
-            In the store are occupied
-            returns None
-        """
-        pass
+        if self.empty():
+            self.front = 0
+            self.rear = 0
+        elif self.rear == self.front:
+            raise QueueFullException("Queue is full!")
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
 
     def dequeue(self):
-        """ Removes and returns an element from the Queue
-            Raises a QueueEmptyException if 
-            The Queue is empty.
-        """
-        pass
+        if self.front == -1 and self.rear == -1:
+            raise QueueEmptyException
+        else:
+            removed = self.store[self.front]    
+            self.store[self.front] = None
+            self.front = (self.front + 1) % self.buffer_size
+            if self.front == self.rear:
+                self.front = self.rear = -1
+        self.size -= 1
+        return removed
 
     def front(self):
-        """ Returns an element from the front
-            of the Queue and None if the Queue
-            is empty.  Does not remove anything.
-        """
-        pass
+        if self.empty():
+            return None
+        else:
+            return self.store[self.front]
         
 
     def size(self):
-        """ Returns the number of elements in
-            The Queue
-        """
-        pass
+        if self.empty():
+            return 0
+        else:
+            return self.size
 
     def empty(self):
-        """ Returns True if the Queue is empty
-            And False otherwise.
-        """
-        pass
+        return self.front == -1
 
     def __str__(self):
-        """ Returns the Queue in String form like:
-            [3, 4, 7]
-            Starting with the front of the Queue and
-            ending with the rear of the Queue.
-        """
-        pass
+        if self.empty():
+            return str([])
+        if self.front < self.rear:
+            return str(self.store[self.front:self.rear])
+        else:
+            result = []
+            first_half = self.store[self.front:]
+            second_half = self.store[:self.rear]
+            return str(first_half + second_half)
