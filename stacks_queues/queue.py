@@ -15,7 +15,7 @@ class Queue:
         self.front = -1
         self.rear = -1
         self.size = 0
-      
+    
 
     def enqueue(self, element):
         """ Adds an element to the Queue
@@ -23,34 +23,57 @@ class Queue:
             In the store are occupied
             returns None
         """
-        pass
+        if self.front == -1:
+            self.front = 0
+            self.rear = 0
+        elif self.size == self.buffer_size:
+            raise QueueFullException('Queue is full')
+        
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
+        self.size += 1
+
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        if self.front == self.rear:
+            raise QueueEmptyException('Queue is empty')
+        
+        front = self.store[self.front]
+        self.store[self.front] = None
+        self.front = (self.front + 1) % self.buffer_size
+        self.size -= 1
+
+        return front
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
+        if self.front == self.rear:
+            raise QueueEmptyException('Queue is empty')
+        else:
+            return self.store[self.front]
         
 
     def size(self):
         """ Returns the number of elements in
             The Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        if self.front == self.rear:
+            return True
+        else:
+            return False
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +81,7 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        queue = []
+        for e in range(self.size):
+            queue.append(self.store[(self.front + e) % self.buffer_size])
+        return str(queue)
