@@ -40,7 +40,13 @@ def test_elements_maintained_in_proper_order(queue):
     queue.enqueue(5)
     queue.enqueue(3)
     queue.enqueue(7)
+    print(queue.store)
+    print(queue.front)
+    print(queue.rear)
     assert queue.dequeue() == 5
+    print(queue.store)
+    print(queue.front)
+    print(queue.rear)
     assert str(queue) == "[3, 7]"
     assert not queue.empty()
 
