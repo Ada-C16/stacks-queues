@@ -27,7 +27,7 @@ class Queue:
             self.rear = 0
 
         elif self.front == self.rear:
-            raise QueueFullException
+            raise None
         
         self.store[self.rear] = element
         self.rear = (self.rear + 1) % self.buffer_size
@@ -39,7 +39,7 @@ class Queue:
             The Queue is empty.
         """
         if self.front == -1 and self.rear == -1:
-            raise QueueEmptyException
+            raise None
         
         else:
             removed = self.store[self.front]    
