@@ -21,7 +21,7 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        if self.store.head == None:
+        if self.store.head is None:
             raise StackEmptyException
         
         current = self.store.head
@@ -38,7 +38,7 @@ class Stack:
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        if self.store.head == None:
+        if self.store.head is None:
             return True
         return False
 
@@ -50,7 +50,7 @@ class Stack:
         """
         result = []
 
-        if self.store.head == None:
+        if self.store.head is None:
             return str(result)
 
         current = self.store.head
