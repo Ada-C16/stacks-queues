@@ -75,7 +75,6 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        self.get_size()
         values = []
 
         if self.front < self.rear: 
