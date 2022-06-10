@@ -22,11 +22,13 @@ class LinkedList:
     # Space Complexity O(1)
     def add_first(self, value):
         new_node = Node(value)
-        new_node.next = self.head
-
         if self.head:
+            old_head = self.head
             self.head.previous = new_node
-        self.head = new_node
+            self.head = new_node
+            new_node.next = old_head
+        else:
+            self.head = new_node
         if not self.tail:
             self.tail = self.head
 
@@ -240,7 +242,6 @@ class LinkedList:
 
     def __str__(self):
         values = []
-
         current = self.head
         while current:
             values.append(str(current.value))
@@ -248,8 +249,8 @@ class LinkedList:
 
         return ", ".join(values)
 
-ll = LinkedList()
-ll.add_first(5)
-ll.add_first(25)
-ll.add_last(1)
-print(ll)
+# ll = LinkedList()
+# ll.add_first(5)
+# ll.add_first(25)
+# ll.add_last(1)
+# print(ll)

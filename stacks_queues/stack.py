@@ -12,8 +12,8 @@ class Stack:
         """ Adds an element to the top of the Stack.
             Returns None
         """
-        pass
-
+        self.store.add_first(element)
+       
     def pop(self):
         """ Removes an element from the top
             Of the Stack
@@ -21,13 +21,15 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        pass
+    
+        return self.store.remove_first()
+       
 
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        pass
+        return self.store.empty()
 
     def __str__(self):
         """ Returns the Stack in String form like:
@@ -35,4 +37,10 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        current = self.store.head
+        storeStacks = []
+        while current:
+            storeStacks.append(str(current.value))
+            current = current.next
+        return ", ".join(storeStacks)
+
