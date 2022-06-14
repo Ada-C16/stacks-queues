@@ -26,11 +26,6 @@ class Stack:
         else:
             return self.store.remove_first()
 
-
-
-
-
-
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
@@ -43,4 +38,4 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        return self.store.__str__()
