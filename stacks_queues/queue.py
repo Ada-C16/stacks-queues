@@ -23,34 +23,65 @@ class Queue:
             In the store are occupied
             returns None
         """
-        pass
+        # is queue full?
+        if self.size == len(self.store):
+            raise QueueFullException
+        # is queue empty?
+        if self.front == -1:
+            self.front = 0
+            self.rear = 0
+            self.store[self.rear] = element
+        # does rear need to wrap?
+        elif self.rear == len(self.store) - 1:
+            self.rear = 0
+            self.store[self.rear] = element
+        else:
+            self.rear += 1
+            self.store[self.rear] = element
+        self.size += 1
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        # is queue empty
+        if self.empty():
+            raise QueueEmptyException
+        # grab the element from the front of the queue
+        element = self.store[self.front]
+        self.store[self.front] = None
+        # check if array is now empty
+        if self.front == self.rear:
+            self.front = -1
+            self.rear = -1
+        # check if front needs to wrap
+        elif self.front == len(self.store) - 1:
+            self.front = 0
+        else:
+            self.front += 1
+        self.size -= 1
+        return element
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
-        
+        if self.size > 0:
+            return self.store[self.front]
 
     def size(self):
         """ Returns the number of elements in
             The Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        return self.size == 0
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +89,13 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        q = []
+        start = self.front
+        while len(q) < self.size:
+            q.append(self.store[start])
+            if start < len(self.store) - 1:
+                start += 1
+            else:
+                start = 0
+        return str(q)
+
