@@ -34,7 +34,7 @@ class Queue:
             self.front = 0
             self.rear = 0
             self.store[self.rear] = element
-        elif (self.rear == self.size-1 and self.front != 0):
+        elif (self.rear == self.buffer_size-1 and self.front != 0):
             self.rear = 0
             self.store[self.rear] = element
         else:
@@ -61,9 +61,9 @@ class Queue:
 
         elif self.front == self.buffer_size-1:
             self.front = 0
-
+            self.rear -= 1
         else:
-            self.front = (self.front + 1) % self.buffer_size
+            self.front += 1
 
         self.size -= 1
 
@@ -94,6 +94,8 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
+    
         nonetype_removed = list(filter(None, self.store))
-        return str(nonetype_removed)
 
+        nonetype_removed.sort()
+        return str(nonetype_removed)
