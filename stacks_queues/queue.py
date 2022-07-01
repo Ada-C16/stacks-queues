@@ -15,47 +15,43 @@ class Queue:
         self.front = -1
         self.rear = -1
         self.size = 0
-      
 
     def enqueue(self, element):
-        """ Adds an element to the Queue
-            Raises a QueueFullException if all elements
-            In the store are occupied
-            returns None
-        """
-        pass
-
-    def dequeue(self):
-        """ Removes and returns an element from the Queue
-            Raises a QueueEmptyException if 
-            The Queue is empty.
-        """
-        pass
-
-    def front(self):
-        """ Returns an element from the front
-            of the Queue and None if the Queue
-            is empty.  Does not remove anything.
-        """
-        pass
+        if len(self.store) == self.size:
+            raise QueueFullException("QUEUE IS FULL")
+        
+        self.store[self.rear] = element
+        self.size += 1
+        self.rear = (self.rear+1)% self.buffer_size
         
 
+    def dequeue(self):
+        if self.size == 0:
+            raise QueueEmptyException("QUEUE IS EMPTY")
+        
+        element = self.store[self.front]
+        self.size -= 1
+        self.store[self.front] = None
+        self.front = (self.front +1) % self.buffer_size
+        return element
+
+    def front(self):
+        if self.size > 0:
+            return self.store[self.front]
+
     def size(self):
-        """ Returns the number of elements in
-            The Queue
-        """
-        pass
+        return self.size
 
     def empty(self):
-        """ Returns True if the Queue is empty
-            And False otherwise.
-        """
-        pass
+        return self.size == 0
 
     def __str__(self):
-        """ Returns the Queue in String form like:
-            [3, 4, 7]
-            Starting with the front of the Queue and
-            ending with the rear of the Queue.
-        """
-        pass
+        q = []
+        start = self.front
+        while len(q) < self.size:
+            q.append(self.store[start])
+            if start < len(self.store) - 1:
+                start += 1
+            else:
+                start = 0
+        return str(q)
