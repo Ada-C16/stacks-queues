@@ -6,14 +6,14 @@ class StackEmptyException(Exception):
 class Stack:
 
     def __init__(self):
-        # self.store = LinkedList()
-        self.store = list()
+        self.store = LinkedList()
+        # self.store = list()
 
     def push(self, element):
         """ Adds an element to the top of the Stack.
             Returns None
         """
-        self.store.append(element)
+        self.store.add_first(element)
         
 
         
@@ -26,17 +26,17 @@ class Stack:
             returns None
         """
     
-        if len(self.store) == 0:
+        if self.store.length() == 0:
             raise StackEmptyException
         else:
-            return self.store.pop()
+            return self.store.remove_first()
         
 
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        if len(self.store) == 0:
+        if self.store.length() == 0:
             return True
         else:
             return False
