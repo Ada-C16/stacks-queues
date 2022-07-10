@@ -4,12 +4,12 @@ Thanks for doing some brain yoga. You are now submitting this assignment!
 ## Comprehension Questions
 |  Question 	|  Answer 	|
 |------------	| ---------	|
-|  What is an ADT?	|   	|
+|  What is an ADT?	|   	| ADT stands for Abstract data types used to retrieve data.
 |  Describe a Stack	|   	|
-|  What are the 5 methods in Stack and what does each do?	|   	|
-|  Describe a Queue	|   	|
-|  What are the 5 methods in Queue and what does each do?	|   	|
-|  What is the difference between implementing something and using something? | 	|
+|  What are the 5 methods in Stack and what does each do?	|   	| Push(put's item on top of stack),pop(remove), is_empty(checks if it is empty),peek(returns item at the top of stack), size(checks size/length)
+|  Describe a Queue	|   	| A queue operates under first in first out. Similar to standing in a grocery store check out line
+|  What are the 5 methods in Queue and what does each do?	|   	| enqueue( add to queue), dequeue(remove from queue), empty(checks if it's empty)
+|  What is the difference between implementing something and using something? | 	|I'm not sure if there is a difference.
 
 ## OPTIONAL JobSimulation
 |  Question 	|  Answer 	|
