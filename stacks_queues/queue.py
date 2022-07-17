@@ -1,5 +1,3 @@
-from linked_list import LinkedList;
-
 INITIAL_QUEUE_SIZE = 20
 
 class QueueFullException(Exception):
@@ -11,8 +9,7 @@ class QueueEmptyException(Exception):
 class Queue:
 
     def __init__(self):
-        self.store = LinkedList()* INITIAL_QUEUE_SIZE
-        self.buffer_size = INITIAL_QUEUE_SIZE
+        self.queue = []
         self.front = -1
         self.rear = -1
         self.size = 0
@@ -26,11 +23,8 @@ class Queue:
         """
         if self.rear == self.front:
             raise QueueFullException()
-        elif self.front == -1 and self.rear == -1:
-            self.front = 0
-            self.rear = 0
-        self.store[self.rear] = element
-        self.size += 1
+        else: 
+            self.queue.append(element)
 
 
     def dequeue(self):
@@ -41,13 +35,7 @@ class Queue:
         if self.rear == -1 and self.front == -1:
             raise QueueEmptyException("No elements in the queue!")
         else:
-            my_element = self.store[self.front]
-            self.store[self.front] = None
-            self.front = (self.front + 1) % self.buffer_size
-            if self.front == self.rear:
-                self.rear = self.front = -1
-        self.size -= 1
-        return my_element
+            return self.queue.pop()
 
 
     def front(self):
@@ -57,7 +45,7 @@ class Queue:
         """
         if self.front == -1:
             return None
-        return self.store[self.front]
+        return self.queue[self.front]
         
 
     def size(self):
@@ -83,13 +71,4 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        elements = []
-        current_element = self.front
-        count = 0
-
-        while count < self.size:
-            elements.append(str(self.store[current_element]))
-            current_element = (current_element + 1) % self.buffer_size
-            count += 1
-
-        return f"[{', '.join(elements)}]"
+        return f"[{','.join(str(element) for element in self.queue)}]"
