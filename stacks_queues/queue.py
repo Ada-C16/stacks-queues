@@ -90,4 +90,3 @@ class Queue:
             count += 1
             next = (next + 1) % self.buffer_size
         return "[" + strang + "]"
-
