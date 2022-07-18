@@ -49,8 +49,3 @@ class Stack:
             current = current.next
 
         return ", ".join(values)
-
-
-stack = Stack()
-stack.push(10)
-stack.pop()
