@@ -14,6 +14,7 @@ def test_can_push_onto_empty_stack_and_pop(stack):
     stack.push(10)
     assert stack.pop() == 10
 
+
 def test_multiple_items_pushed_onto_stack(stack):
     stack.push(10)
     stack.push(20)
