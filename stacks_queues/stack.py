@@ -1,3 +1,4 @@
+from tokenize import String
 from stacks_queues.linked_list import LinkedList
 
 class StackEmptyException(Exception):
@@ -38,4 +39,5 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        String = "[" + str(self.store.first()) + "]"
+        return String
