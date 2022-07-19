@@ -30,7 +30,8 @@ class Queue:
         # last
         if self.rear == (INITIAL_QUEUE_SIZE - 1):
             self.rear = 0
-        self.rear += 1
+        else:
+            self.rear += 1
 
         # front
         if self.front == -1:
