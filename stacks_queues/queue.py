@@ -23,7 +23,7 @@ class Queue:
         In the store are occupied
         returns None
         """
-        if self.size == INITIAL_QUEUE_SIZE:
+        if self.size == self.buffer_size:
             raise QueueFullException  # Overflow condition - if queue is full
 
         self.size += 1
@@ -61,7 +61,7 @@ class Queue:
         of the Queue and None if the Queue
         is empty.  Does not remove anything.
         """
-        self.store[self.front]
+        return self.store[self.front]
 
     def size(self):
         """Returns the number of elements in

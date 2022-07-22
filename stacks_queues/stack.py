@@ -27,7 +27,7 @@ class Stack:
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        return self.store.length() == 0
+        return self.store.empty()
 
     def __str__(self):
         """ Returns the Stack in String form like:
@@ -35,4 +35,13 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+        stack = []
+        if self.store.head is None:
+            return str(stack)
+
+        current = self.store.head
+        while current:
+            stack.append(current.value)
+            current = current.next
+
+        return str(stack)
