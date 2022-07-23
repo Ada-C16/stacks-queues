@@ -1,3 +1,4 @@
+from tokenize import String
 from stacks_queues.linked_list import LinkedList
 
 class StackEmptyException(Exception):
@@ -7,12 +8,15 @@ class Stack:
 
     def __init__(self):
         self.store = LinkedList()
+        self.front = -1
+        self.rear = -1
+        self.size = 0
 
     def push(self, element):
         """ Adds an element to the top of the Stack.
             Returns None
         """
-        pass
+        self.store.add_first(element)
 
     def pop(self):
         """ Removes an element from the top
@@ -21,13 +25,13 @@ class Stack:
             The Stack is empty.
             returns None
         """
-        pass
+        return self.store.remove_first()
 
     def empty(self):
         """ Returns True if the Stack is empty
             And False otherwise
         """
-        pass
+        return self.store.empty()
 
     def __str__(self):
         """ Returns the Stack in String form like:
@@ -35,4 +39,5 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        pass
+
+        return str(self.store)
