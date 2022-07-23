@@ -39,5 +39,5 @@ class Stack:
             Starting with the top of the Stack and
             ending with the bottom of the Stack.
         """
-        String = "[" + str(self.store.first()) + "]"
-        return String
+
+        return str(self.store)
