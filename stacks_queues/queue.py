@@ -12,7 +12,7 @@ class Queue:
     def __init__(self):
         self.store = [None] * INITIAL_QUEUE_SIZE
         self.buffer_size = INITIAL_QUEUE_SIZE
-        self.front = 0
+        self.front = -1
         self.rear = -1
         self.size = 0
       
@@ -25,10 +25,15 @@ class Queue:
         """
         if self.size == self.buffer_size:
             raise QueueFullException("Queue is full")
-        else:
-            self.rear = (self.rear + 1) % self.buffer_size
-            self.store[self.rear] = element
-            self.size += self.size
+
+        if self.front == -1:
+            self.front = 0
+            self.rear = 0
+
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
+        self.size += 1
+
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
@@ -40,7 +45,7 @@ class Queue:
         else:
             current_element = self.store[self.front]
             self.front = (self.front + 1) % self.buffer_size
-        self.size -= self.size
+        self.size -= 1
         return current_element
 
     def front(self):
