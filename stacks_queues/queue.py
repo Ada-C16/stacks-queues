@@ -23,34 +23,52 @@ class Queue:
             In the store are occupied
             returns None
         """
-        pass
+        if self.size == self.buffer_size:
+            raise QueueFullException("Queue is full")
+
+        if self.front == -1:
+            self.front = 0
+            self.rear = 0
+
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
+        self.size += 1
+
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        if self.size == 0:
+            raise QueueEmptyException("Queue is empty")
+        else:
+            current_element = self.store[self.front]
+            self.front = (self.front + 1) % self.buffer_size
+        self.size -= 1
+        return current_element
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
-        
+        if self.front == 0:
+            raise QueueEmptyException("Queue is empty")
 
+        return self.store[self.front]
+        
     def size(self):
         """ Returns the number of elements in
             The Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        return not self.size
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +76,13 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        values = []
+        current = self.front
+        count = 0
+
+        while count < self.size:
+            values.append(str(self.store[current]))
+            current = (current + 1) % self.buffer_size
+            count += 1
+
+        return f"[{', '.join(values)}]"
