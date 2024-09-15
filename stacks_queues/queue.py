@@ -15,42 +15,59 @@ class Queue:
         self.front = -1
         self.rear = -1
         self.size = 0
-      
 
     def enqueue(self, element):
-        """ Adds an element to the Queue
+        """ Adds an element to the Queue.
             Raises a QueueFullException if all elements
-            In the store are occupied
-            returns None
+            in the store are occupied.
+            Returns None.
         """
-        pass
+        if self.size == self.buffer_size:
+            raise QueueFullException("Queue is full!")
+
+        if self.size == 0: 
+            self.front = self.rear = 0
+
+        self.store[self.rear] = element
+        self.rear = (self.rear + 1) % self.buffer_size
+        self.size += 1
 
     def dequeue(self):
         """ Removes and returns an element from the Queue
             Raises a QueueEmptyException if 
             The Queue is empty.
         """
-        pass
+        if self.empty(): 
+            raise QueueEmptyException("Queue is empty.")
+
+        removed_element = self.store[self.front]
+        self.store[self.front] = None
+        self.front += 1
+        self.size -= 1
+
+        return removed_element
 
     def front(self):
         """ Returns an element from the front
             of the Queue and None if the Queue
             is empty.  Does not remove anything.
         """
-        pass
-        
+        if self.empty(): 
+            return None
 
-    def size(self):
+        return self.store[self.front]
+
+    def get_size(self):
         """ Returns the number of elements in
-            The Queue
+            the Queue
         """
-        pass
+        return self.size
 
     def empty(self):
         """ Returns True if the Queue is empty
             And False otherwise.
         """
-        pass
+        return self.size == 0
 
     def __str__(self):
         """ Returns the Queue in String form like:
@@ -58,4 +75,18 @@ class Queue:
             Starting with the front of the Queue and
             ending with the rear of the Queue.
         """
-        pass
+        values = []
+
+        if self.front < self.rear: 
+            for index in range(self.front, self.rear): 
+                values.append(self.store[index])
+        
+        else: 
+            for index in range(self.front, self.buffer_size):
+                values.append(self.store[index])
+            for index in range(0, self.rear):
+                values.append(self.store[index])
+
+        return str(values)
+
+
